@@ -1,11 +1,13 @@
 <template>
   <div>
     <el-container>
-      <el-aside width="200px">
-        <CommonAside/>
+      <el-aside width="auto">
+        <commonAside/>
       </el-aside>
       <el-container>
-        <el-header>Header</el-header>
+        <el-header>
+          <commonHeader/>
+        </el-header>
         <el-main>
           <router-view></router-view>
         </el-main>
@@ -15,16 +17,21 @@
 </template>
 
 <script>
-import CommonAside from '../components/CommonAside'
+import commonAside from '../components/CommonAside'
+import commonHeader from '../components/CommonHeader'
 export default {
   data() {
     return {};
   },
   components:{
-    CommonAside
+    commonAside,commonHeader
+
   }
 };
 </script>
 
-<style>
+<style scoped>
+  .el-header{
+    padding: 0;
+  }
 </style>

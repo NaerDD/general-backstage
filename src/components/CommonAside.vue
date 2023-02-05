@@ -8,8 +8,10 @@
     background-color="#545c64"
     text-color="#fff"
     active-text-color="#ffd04b"
+    
   >
-    <el-menu-item v-for="item in noChildren" :key="item.name" :index="item.name">
+  <h3>{{isCollapse ? '后台':'通用后台管理系统'}}</h3>
+    <el-menu-item v-for="item in noChildren" @click="clickMenu(item)" :key="item.name" :index="item.name">
       <i :class="`el-icon-${item.icon}`"></i>
       <span slot="title">{{item.label }}</span>
     </el-menu-item>
@@ -21,16 +23,27 @@
       </template>
 
       <el-menu-item-group v-for="subItem in item.children" :key="subItem.path" :index="subItem.path">
-        <el-menu-item :index="subItem.path">{{subItem.label}}</el-menu-item>
+        <el-menu-item :index="subItem.path" @click="clickMenu(subItem)">{{subItem.label}}</el-menu-item>
       </el-menu-item-group>
     </el-submenu>
   </el-menu>
 </template>
 
-<style>
+<style lang="less" scoped>
 .el-menu-vertical-demo:not(.el-menu--collapse) {
-  width: 200px;
+  // width: 200px;
   min-height: 400px;
+}
+.el-menu {
+  border-right: none;
+  height: 100vh;
+  h3{
+    color: #fff;
+    text-align: center;
+    line-height: 48px;
+    font-size: 16px;
+    font-weight: 400;
+  }
 }
 </style>
 
@@ -38,7 +51,6 @@
 export default {
   data() {
     return {
-      isCollapse: false,
       menuData: [
         {
           path: "/",
@@ -91,6 +103,14 @@ export default {
     handleClose(key, keyPath) {
       console.log(key, keyPath);
     },
+    //点击菜单
+    clickMenu(item){
+      console.log(item);
+      //当页面的路由与我们要跳转的路由相同时不允许
+      if(this.$route.path!==item.path && !(this.$route.path === '/home' &&(item.path === '/'))){
+        this.$router.push(item.path)
+      }
+    }
   },
   computed:{
     //没有子菜单
@@ -100,6 +120,9 @@ export default {
     //有子菜单
     hasChildren(){
       return this.menuData.filter(item=> item.children)
+    },
+    isCollapse(){
+      return this.$store.state.tab.isCollapse
     }
   }
 };
