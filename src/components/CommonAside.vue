@@ -31,12 +31,12 @@
 
 <style lang="less" scoped>
 .el-menu-vertical-demo:not(.el-menu--collapse) {
-  // width: 200px;
+  width: 200px;
   min-height: 400px;
 }
 .el-menu {
   border-right: none;
-  height: 100vh;
+  height: 125vh;
   h3{
     color: #fff;
     text-align: center;
@@ -110,6 +110,7 @@ export default {
       if(this.$route.path!==item.path && !(this.$route.path === '/home' &&(item.path === '/'))){
         this.$router.push(item.path)
       }
+      this.$store.commit('selectMenu',item)
     }
   },
   computed:{

@@ -6,6 +6,7 @@ import 'element-ui/lib/theme-chalk/index.css';
 import App from './App.vue';
 import router from './router';
 import store from './store';
+import './api/mock'
 
 //按需引入
 // Vue.use(Button)
