@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        function toString(foo) {
+            // var foo = 'get-element-by-id';
+            //将字符串转为数组 用-分割
+            var arr = foo.split('-');
+            console.log(arr);
+
+            console.log(arr[1].charAt(0).toUpperCase() + arr[1].substr(1, arr[1].length - 1));
+            for (var i = 1; i < arr.length; i++) {
+                arr[i] = arr[i].charAt(0).toUpperCase() + arr[i].substr(1, arr[i].length - 1)
+            }
+            //将数组转换回字符串
+            return arr.join('');
+        }
+        console.log(toString('asca-daf-adsasf-vzxc'));
+        
+    </script>
+</body>
+
+</html>

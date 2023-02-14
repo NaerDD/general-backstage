@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    html,body{
+      margin: 0;
+      padding: 0;
+    }
+    html{
+      font-size: 37.5px;
+    }
+    .box{
+      /* width: 231.25px; */
+      /* height: 231.25px; */
+      width: 2.7027rem;
+      height: 2.7027rem;
+      background-color: red;
+    }
+  </style>
+</head>
+<body>
+  <div class="box"></div>
+  <script>
+      const docEl = document.documentElement
+
+      //处理rem单位的换算逻辑
+      function setRen() {
+         const rem =  docEl.clientWidth / 10
+         docEl.style.fontSize = rem + 'px'
+       }
+
+       //监听当前屏幕窗口的变化
+       window.addEventListener('resize',setRen)
+       
+        //监听页面初次加载时候的时间
+        window.addEventListener('pageshow',setRen)
+  </script>
+</body>
+</html>
