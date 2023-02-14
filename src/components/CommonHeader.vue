@@ -13,13 +13,13 @@
       </el-breadcrumb>
     </div>
     <div class="r-content">
-      <el-dropdown>
+      <el-dropdown @command="handleClick">
         <span class="el-dropdown-link">
           <img class="user" src="../assets/images/user.png" alt="" />
         </span>
         <el-dropdown-menu slot="dropdown">
           <el-dropdown-item>个人中心</el-dropdown-item>
-          <el-dropdown-item>退出</el-dropdown-item>
+          <el-dropdown-item command="logout">退出</el-dropdown-item>
         </el-dropdown-menu>
       </el-dropdown>
     </div>
@@ -31,15 +31,32 @@
 // 方法一 直接this.$store取
 // 方法二 mapstate辅助函数
 import { mapState } from 'vuex'
+import Cookie from 'js-cookie'
 export default {
   name: "",
   data() {
     return {};
   },
   methods: {
-    async handleMenu() {
+    handleMenu() {
       this.$store.commit("collapseMenu");
     },
+    handleClick(command){
+      if(command=== 'logout'){
+        console.log('注销');
+        
+      //清除Cookie中的token信息
+      Cookie.remove('token')
+      
+      //清除cookie中的menu
+      Cookie.remove('menu')
+      
+      //跳转页面
+      this.$router.push('/login')
+      }
+
+    },
+
   },
   computed:{
     //直接调用这个方法会返回一个对象 所以使用扩展运算符... es6语法 将这个返回的对象进行解构

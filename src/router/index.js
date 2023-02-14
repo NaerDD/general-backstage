@@ -6,6 +6,7 @@ import Main from '../views/Main'
 import Mall from '../views/Mall'
 import PageOne from '../views/PageOne'
 import PageTwo from '../views/PageTwo'
+import Login from '../views/Login'
 
 Vue.use(VueRouter)
 // 1.创建路由组件
@@ -17,15 +18,21 @@ const routes = [
   {
     path:'/',
     component:Main,
+    name:'Main',
     redirect:'./home',//重定向
     children:[
       //子路由
-      {path:'/home',name:'home',component:Home},//首页
-      {path:'/user',name:'user',component:User},//用户
-      {path:'/mall',name:'mall',component:Mall},//商品
-      {path:'/page1',name:'page1',component:PageOne},//页面1
-      {path:'/page2',name:'page2',component:PageTwo},//页面2
+      // {path:'/home',name:'home',component:Home},//首页
+      // {path:'/user',name:'user',component:User},//用户
+      // {path:'/mall',name:'mall',component:Mall},//商品
+      // {path:'/page1',name:'page1',component:PageOne},//页面1
+      // {path:'/page2',name:'page2',component:PageTwo},//页面2
     ]
+  },
+  {
+    path:'/login',
+    name:'login',
+    component:Login
   }
 ]
 const router = new VueRouter({
