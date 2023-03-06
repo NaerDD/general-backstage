@@ -27,8 +27,6 @@ export default {
   },
   components:{
     commonAside,commonHeader,CommonTag
-
-
   }
 };
 </script>
